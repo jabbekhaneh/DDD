@@ -8,12 +8,15 @@
 
   <ItemGroup>
     <Folder Include="Documents\" />
-    <Folder Include="Users\Command\" />
-    <Folder Include="Users\Query\" />
+    <Folder Include="Users\Commands\AddUser\" />
+    <Folder Include="Users\Commands\EditUser\" />
+    <Folder Include="Users\DTOs\" />
+    <Folder Include="Users\Queries\GetUserById\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Portal.Domain\Portal.Domain.csproj" />
+    <ProjectReference Include="..\Portal.Extentions\Portal.Extentions.csproj" />
   </ItemGroup>
 
 </Project>

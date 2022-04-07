@@ -14,4 +14,8 @@
     <ProjectReference Include="..\..\Library\Portal.EF\Portal.EF.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Users\" />
+  </ItemGroup>
+
 </Project>

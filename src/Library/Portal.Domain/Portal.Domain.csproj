@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <Folder Include="Documents\" />
-    <Folder Include="Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
   </ItemGroup>
 
 </Project>
