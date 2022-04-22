@@ -6,7 +6,6 @@ namespace Portal.EF.Migrations;
 public static class Runner
 {
     public static string ConnectionString { get; set; } = "Server=.;Database=_dbPortal;Trusted_Connection=True;";
-
     public static void Main()
     {
         var serviceProvider = CreateServices();

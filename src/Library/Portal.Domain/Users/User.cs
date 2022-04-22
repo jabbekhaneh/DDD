@@ -87,6 +87,19 @@ public class User : BaseEntity
     public ICollection<RoleUser> RoleUsers { get; set; }
     #endregion
 
+    #region Aggregate
+
+    public void AddRole(RoleUser roleUser)
+    {
+        RoleUsers.Add(roleUser);
+    }
+
+    public void AddLoginHistory(UserLoginHistory userLoginHistory)
+    {
+        UserLoginHistories.Add(userLoginHistory);
+    }
+    #endregion
+
 }
 
 
