@@ -11,8 +11,9 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, OperationResu
         _userRepository = userRepository;
     }
 
-    public Task<OperationResult<GetUsersDto>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+    public async Task<OperationResult<GetUsersDto>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        GetUsersDto users =await _userRepository.GetUsers(request.Search,request.PageId, request.Take);
+        return OperationResult<GetUsersDto>.BuildSuccess(users);
     }
 }

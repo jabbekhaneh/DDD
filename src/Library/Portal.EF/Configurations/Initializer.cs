@@ -6,6 +6,7 @@ using Portal.Application.Users.Commands.AddUser;
 using Portal.Application.Users.Commands.EditUser;
 using Portal.Application.Users.Contracts;
 using Portal.Application.Users.Queries.GetUserById;
+using Portal.Application.Users.Queries.GetUsers;
 using Portal.EF.Users.Repositories;
 using System.Reflection;
 
@@ -13,7 +14,7 @@ namespace Portal.EF.Configurations;
 
 public static class Initializer
 {
-    public static IServiceCollection ConfigServices(this IServiceCollection services,string connection)
+    public static IServiceCollection ConfigServices(this IServiceCollection services, string connection)
     {
         //---------------------
         services.AddMemoryCache();
@@ -34,6 +35,7 @@ public static class Initializer
         services.AddMediatR(typeof(AddUserCommand).GetTypeInfo().Assembly);
         services.AddMediatR(typeof(EditUserCommand).GetTypeInfo().Assembly);
         services.AddMediatR(typeof(GetUserByIdQuery).GetTypeInfo().Assembly);
+        services.AddMediatR(typeof(GetUsersQuery).GetTypeInfo().Assembly);
         //---------------------
 
         return services;

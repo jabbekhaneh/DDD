@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Users.Commands.AddUser;
 using Portal.Application.Users.Commands.EditUser;
 using Portal.Application.Users.Queries.GetUserById;
+using Portal.Application.Users.Queries.GetUsers;
 using Portal.Extentions.Common;
 
 namespace Portal.WebApi.Controllers.Manager
@@ -15,6 +16,11 @@ namespace Portal.WebApi.Controllers.Manager
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public async Task<OperationResult<GetUsersDto>> GetAll(string search = "", int take = 40, int pageId = 1)
+        {
+            return await _mediator.Send(new GetUsersQuery { PageId = pageId, Search = search, Take = take});
+        }
         [HttpGet("id")]
         public async Task<OperationResult<GetUserByIdDto>> Get(Guid id)
         {
