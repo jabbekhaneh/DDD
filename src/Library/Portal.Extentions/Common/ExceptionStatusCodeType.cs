@@ -11,4 +11,5 @@ public enum ExceptionStatusCodeType
 
 
     AddUser = 601,
+    NotFoundUser = 602,
 }

@@ -6,5 +6,8 @@ namespace Portal.Application.Users.Contracts
     public interface UserRepository
     {
         Task Add(User user);
+        Task Delete(User user);
+        Task<User> FindById(Guid id);
+
     }
 }

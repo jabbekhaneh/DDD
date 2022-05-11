@@ -9,7 +9,7 @@ public class Role : BaseEntity
     public Role()
     {
         RolePermissions = new List<RolePermission>();
-        RoleUsers=new List<RoleUser>();
+        RoleUsers = new List<RoleUser>();
     }
     #endregion
 
