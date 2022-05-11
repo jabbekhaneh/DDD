@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Portal.Application.Users.Commands.AddUser;
 using Portal.Application.Users.Commands.EditUser;
 using Portal.Application.Users.Contracts;
+using Portal.Application.Users.Queries.GetUserById;
 using Portal.EF.Users.Repositories;
 using System.Reflection;
 
@@ -14,7 +15,7 @@ public static class Initializer
 {
     public static IServiceCollection ConfigServices(this IServiceCollection services,string connection)
     {
-        
+        //---------------------
         services.AddMemoryCache();
         //---------------------
         services.AddDbContext<EFdbApplication>(options =>
@@ -32,6 +33,8 @@ public static class Initializer
         //---------------------
         services.AddMediatR(typeof(AddUserCommand).GetTypeInfo().Assembly);
         services.AddMediatR(typeof(EditUserCommand).GetTypeInfo().Assembly);
+        services.AddMediatR(typeof(GetUserByIdQuery).GetTypeInfo().Assembly);
+        //---------------------
 
         return services;
     }

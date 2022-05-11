@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Portal.Application.Users.Contracts;
+using Portal.Application.Users.Queries.GetUserById;
 using Portal.Domain.Users;
-
+using Mapster;
 namespace Portal.EF.Users.Repositories;
 
 public class EFUserRepository : UserRepository
@@ -18,13 +19,12 @@ public class EFUserRepository : UserRepository
         await _context.Users.AddAsync(user);
     }
 
-    public Task Delete(User user)
+    public async Task<User> FindById(Guid id) => await _context.Users
+        .FirstOrDefaultAsync(_ => _.Id == id);
+
+    public async Task<GetUserByIdDto> GetUserById(Guid id)
     {
-        
-        throw new NotImplementedException();
+        return await _context.Users.Where(_ => _.Id == id)
+            .ProjectToType<GetUserByIdDto>().FirstOrDefaultAsync();
     }
-
-    public async Task<User> FindById(Guid id) => await _context.Users.FirstOrDefaultAsync(_ => _.Id == id);
-
-    
 }
