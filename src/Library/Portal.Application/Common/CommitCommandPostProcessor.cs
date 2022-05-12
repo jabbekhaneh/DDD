@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MediatR.Pipeline;
 
 namespace Portal.Application.Common;
 public class CommitCommandPostProcessor<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
@@ -8,6 +9,7 @@ public class CommitCommandPostProcessor<TRequest, TResponse> : IPipelineBehavior
     {
         _UOW = unitOfWork;
     }
+    
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
         try
@@ -16,13 +18,13 @@ public class CommitCommandPostProcessor<TRequest, TResponse> : IPipelineBehavior
             {
                 await _UOW.CommitAsync();
             }
-
+            
             return await next();
         }
         catch (Exception ex)
         {
 
-            throw;
+            throw ex;
         }
     }
 }

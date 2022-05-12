@@ -30,7 +30,7 @@ namespace Portal.WebApi.Controllers.Manager
         [HttpPost]
         public async Task<OperationResult<AddUserResponseDto>> AddUser(AddUserDto user)
         {
-            return await _mediator.Send(new AddUserCommand(user));
+            return await _mediator.Send(new AddUserCommand { User=user});
         }
 
         [HttpPut]

@@ -12,4 +12,6 @@ public enum ExceptionStatusCodeType
 
     AddUser = 601,
     NotFoundUser = 602,
+    NotFoundRole = 603,
+    DublicateMobile = 604,
 }

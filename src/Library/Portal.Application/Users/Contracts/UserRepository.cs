@@ -11,5 +11,6 @@ namespace Portal.Application.Users.Contracts
         Task<User> FindById(Guid id);
         Task<GetUserByIdDto> GetUserById(Guid id);
         Task<GetUsersDto> GetUsers(string search, int pageId, int take);
+        Task<bool> IsExistByMobile(string mobile);
     }
 }

@@ -48,4 +48,9 @@ public class EFUserRepository : UserRepository
         getUser.PageId = pageId;
         return getUser;
     }
+
+    public async Task<bool> IsExistByMobile(string mobile)
+    {
+        return await _context.Users.AnyAsync(_ => _.Mobile==mobile);
+    }
 }

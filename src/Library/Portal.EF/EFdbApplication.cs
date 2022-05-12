@@ -6,15 +6,42 @@ namespace Portal.EF;
 public class EFdbApplication : DbContext
 {
     private readonly string _ConnectionString = String.Empty;
-    public EFdbApplication() : this("data source =.; initial catalog =_dbPortal; integrated security = True; MultipleActiveResultSets=True")
+    public EFdbApplication(string connectionString) : this(new DbContextOptionsBuilder<EFdbApplication>().UseSqlite(connectionString).Options)
     {
-
+    }
+    private EFdbApplication(DbContextOptions<EFdbApplication> options): this((DbContextOptions)options)
+    {
     }
 
-    public EFdbApplication(string connectionString)
+    protected EFdbApplication(DbContextOptions options) : base(options)
     {
-        _ConnectionString = connectionString;
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(EFdbApplication).Assembly);
+    }
+    //public EFdbApplication() : this("data source =.; initial catalog =_dbPortal; integrated security = True; MultipleActiveResultSets=True")
+    //{
+
+    //}
+
+    //public EFdbApplication(string connectionString)
+    //{
+    //    _ConnectionString = connectionString;
+    //}
+
+
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    base.OnConfiguring(optionsBuilder);
+    //}
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+    //    base.OnModelCreating(modelBuilder);
+    //}
+
 
     #region Users
 
@@ -27,14 +54,7 @@ public class EFdbApplication : DbContext
 
     #endregion
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-    }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-    }
+
     public override ChangeTracker ChangeTracker
     {
         get
@@ -46,5 +66,9 @@ public class EFdbApplication : DbContext
             return tracker;
         }
     }
+
+
+
+
 
 }
