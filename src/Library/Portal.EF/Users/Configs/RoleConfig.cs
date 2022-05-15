@@ -12,6 +12,6 @@ public class RoleConfig : IEntityTypeConfiguration<Role>
         _.Property(_ => _.Id).IsRequired();
         _.Property(_ => _.Title).IsRequired().HasMaxLength(255);
 
-        
+        _.HasMany(_ => _.RoleUsers).WithOne(_ => _.Role).HasForeignKey(_ => _.RoleId);
     }
 }

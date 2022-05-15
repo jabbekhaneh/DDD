@@ -5,8 +5,6 @@ namespace Portal.Application.Users.Commands.EditUser
 {
     public class EditUserDto
     {
-        [Required]
-        public string Mobile { get; set; } = string.Empty;
         //===
         [Required]
         public Guid RoleId { get; set; }

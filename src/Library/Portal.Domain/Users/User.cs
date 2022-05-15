@@ -93,15 +93,17 @@ public class User : BaseEntity
     {
         RoleUsers.Add(roleUser);
     }
-    public RoleUser FindRoleUser(Guid roleId)
-    {
-        return RoleUsers.FirstOrDefault(_ => _.RoleId == roleId);
-    }
+   
     
 
     public void AddLoginHistory(UserLoginHistory userLoginHistory)
     {
         UserLoginHistories.Add(userLoginHistory);
+    }
+
+    public RoleUser FindRoleUser()
+    {
+        return RoleUsers.FirstOrDefault();
     }
     #endregion
 

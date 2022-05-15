@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Portal.Application.Users.Contracts;
+using Portal.Domain.Users;
 
 namespace Portal.EF.Users.Repositories;
 

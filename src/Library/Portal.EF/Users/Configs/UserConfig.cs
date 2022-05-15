@@ -29,6 +29,7 @@ public class UserConfig : IEntityTypeConfiguration<User>
         _.Property(_=>_.Geneder).IsRequired();
         
 
+        _.HasMany(_=>_.RoleUsers).WithOne(_=>_.User).HasForeignKey(_=>_.UserId);
 
     }
 }

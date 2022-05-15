@@ -26,9 +26,6 @@ public class AddUserBuilder
     private UnitOfWork _UnitOfWork;
     private CancellationToken _cancellToken;
     //-----------------------------------------
-    private string _email = "dummy-email@mail.com";
-    private string _firstname = "dummy-firstname";
-    private string _lastname = "dummy-lastname";
     private string _mobile = "9107066676";
     private Guid _roleId = Guid.Empty;
     //-----------------------------------------
@@ -46,7 +43,7 @@ public class AddUserBuilder
 
     public AddUserBuilder WithMobile(string mobile)
     {
-        UserFactory.GenerateUser(_db,_mobile);
+        UserFactory.GenerateUser(_db,_mobile,_roleId);
         
         return this;
     }
@@ -57,15 +54,7 @@ public class AddUserBuilder
     }
     public AddUserDto Arange()
     {
-
-        var newUser = new AddUserDto
-        {
-            Email = _email,
-            Firsname = _firstname,
-            Lastname = _lastname,
-            Mobile = _mobile,
-            RoleId = _roleId,
-        };
+        var newUser = UserFactory.GenerateAddUserDto(_mobile,_roleId);
         _db.SaveChanges();
         return newUser;
     }

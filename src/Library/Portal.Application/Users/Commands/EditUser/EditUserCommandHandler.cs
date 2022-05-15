@@ -7,7 +7,6 @@ namespace Portal.Application.Users.Commands.EditUser;
 public class EditUserCommandHandler : IRequestHandler<EditUserCommand, OperationResult<EditUserResponseDto>>
 {
     private readonly UserRepository _userRepository;
-
     public EditUserCommandHandler(UserRepository userRepository)
     {
         _userRepository = userRepository;
@@ -23,13 +22,8 @@ public class EditUserCommandHandler : IRequestHandler<EditUserCommand, Operation
                 return OperationResult<EditUserResponseDto>
                     .BuildFailure(new OperationException("", ExceptionStatusCodeType.NotFoundUser));
 
-            var roleuser = user.FindRoleUser(request.User.RoleId);
-            if (roleuser == null)
-            {
-                var editRole = user.RoleUsers.FirstOrDefault();
-                editRole.RoleId = request.User.RoleId;
-            }
-
+            var editRole = user.RoleUsers.FirstOrDefault();
+            editRole.RoleId = request.User.RoleId;
             user.Email = request.User.Email;
             user.Address = request.User.Address;
             user.City = request.User.City;
@@ -38,7 +32,7 @@ public class EditUserCommandHandler : IRequestHandler<EditUserCommand, Operation
             user.Firstname = request.User.Firstname;
             user.Lastname = request.User.Lastname;
             user.Job = request.User.Job;
-            user.Geneder = request.User.Geneder.Value;
+            user.Geneder = request.User.Geneder;
             return OperationResult<EditUserResponseDto>.BuildSuccess(response);
         }
         catch (Exception ex) 
